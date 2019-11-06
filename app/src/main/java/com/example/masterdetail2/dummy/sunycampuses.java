@@ -31,11 +31,11 @@ public class sunycampuses {
 
         // Add some sample items.
 
-        addItem(new campus("SUCO", "SUNY Oneonta", "A liberal art college", R.drawable.suco));
+        addItem(new campus("SUCO", "SUNY Oneonta", "A liberal art college", R.drawable.suco, "red dragon", R.drawable.sucom));
 
-        addItem(new campus("Albany", "SUNY Albany", "A research center", R.drawable.albany));
+        addItem(new campus("Albany", "SUNY Albany", "A research center", R.drawable.albany, "dane", R.drawable.albanym));
 
-        addItem(new campus("Binghamton", "SUNY Binghamton", "A research", R.drawable.suco));
+        addItem(new campus("Binghamton", "SUNY Binghamton", "A research", R.drawable.suco, "some", R.drawable.sucom));
 
         for (int i = 1; i <= COUNT; i++) {
             addItem(createDummyItem(i));
@@ -52,7 +52,7 @@ public class sunycampuses {
     }
 
     private static campus createDummyItem(int position) {
-        return new campus(String.valueOf(position), "Item " + position, makeDetails(position), R.drawable.suco);
+        return new campus(String.valueOf(position), "Item " + position, makeDetails(position), R.drawable.suco,"abc", R.drawable.ic_launcher_foreground);
     }
 
     private static String makeDetails(int position) {
@@ -72,13 +72,17 @@ public class sunycampuses {
         public final String content;
         public final String details;
         public final int logoid;
+        public final String mascotname;
+        public final int mascotid;
 
-        public campus(String id, String content, String details, int logoid) {
+
+        public campus(String id, String content, String details, int logoid, String mascotname, int mascotid) {
             this.id = id;
             this.content = content;
             this.details = details;
             this.logoid=logoid;
-
+            this.mascotname = mascotname;
+            this.mascotid=mascotid;
         }
 
         @Override

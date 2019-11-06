@@ -17,4 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
+
+    <ImageView
+        android:id="@+id/imageid"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/text_margin"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
 </LinearLayout>
