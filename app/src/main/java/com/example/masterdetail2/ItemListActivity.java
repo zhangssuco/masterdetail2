@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.masterdetail2.dummy.sunycampuses;
 
@@ -40,6 +41,7 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+    View recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +56,16 @@ public class ItemListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Please provide a new campus", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
                 Intent intent = new Intent( getApplicationContext(),addItem.class);
+
                 intent.putExtra(EXTRA_MESSAGE, "message");
-                startActivity(intent);
+                //startActivity(intent);
+                startActivityForResult(intent, 1);
+
+
 
             }
         });
@@ -72,10 +78,32 @@ public class ItemListActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
-        View recyclerView = findViewById(R.id.item_list);
+        recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
     }
+
+    //Called when an activity you launched exits, giving you the requestCode you started it with,
+    // the resultCode it returned, and any additional data from it.
+    public void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+        Toast.makeText(getApplicationContext(),"back to main activity", Toast.LENGTH_SHORT).show();
+
+        if (requestCode == 1)
+        {
+            if(resultCode == RESULT_OK)
+            {
+                sunycampuses.newcampus(data);
+                // update the crcyclerview, probably there are more efficient ways.
+                // For the time being, it create the desired effect.
+                setupRecyclerView((RecyclerView) recyclerView);
+
+            }
+        }
+    }
+
+
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, sunycampuses.ITEMS, mTwoPane));

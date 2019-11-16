@@ -1,5 +1,7 @@
 package com.example.masterdetail2.dummy;
 
+import android.content.Intent;
+
 import com.example.masterdetail2.R;
 
 import java.util.ArrayList;
@@ -41,10 +43,15 @@ public class sunycampuses {
             addItem(createDummyItem(i));
         }
 
+    }
 
-
+    public static void newcampus(Intent i)
+    {
+        addItem(new campus(i.getStringExtra("id"), i.getStringExtra("id"), "placeholder", R.drawable.suco,
+                "abc", R.drawable.sucom));
 
     }
+
 
     private static void addItem(campus item) {
         ITEMS.add(item);
@@ -52,7 +59,8 @@ public class sunycampuses {
     }
 
     private static campus createDummyItem(int position) {
-        return new campus(String.valueOf(position), "Item " + position, makeDetails(position), R.drawable.suco,"abc", R.drawable.ic_launcher_foreground);
+        return new campus(String.valueOf(position), "Item " + position, makeDetails(position), R.drawable.suco,
+                "abc", R.drawable.sucom);
     }
 
     private static String makeDetails(int position) {
